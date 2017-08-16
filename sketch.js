@@ -2,7 +2,7 @@ let gridSize = 32
 let grid
 
 function setup() {
-  grid = makeGrid(32, 32)
+  grid = makeGrid(gridSize, gridSize)
   createCanvas(512, 512)
   drawGrid(grid)
 }
@@ -17,10 +17,10 @@ function makeGrid(x, y) {
 }
 
 function drawGrid(grid, xoff = 0, yoff = 0) {
-  if (xoff >= 32) {
-    xoff = 32
-  } else if (yoff >= 32) {
-    yoff = 32
+  if (xoff >= gridSize) {
+    xoff = gridSize
+  } else if (yoff >= gridSize) {
+    yoff = gridSize
   }
 
   tileSize = floor(width / gridSize)
@@ -34,8 +34,8 @@ function drawGrid(grid, xoff = 0, yoff = 0) {
         noStroke()
         fill(grid[i][j])
       }
-      x = map(i + xoff, 0, 32, 0, 512)
-      y = map(j + yoff, 0, 32, 0, 512)
+      x = map(i + xoff, 0, gridSize, 0, width)
+      y = map(j + yoff, 0, gridSize, 0, height)
       rect(x, y, tileSize, tileSize)
     }
   }
