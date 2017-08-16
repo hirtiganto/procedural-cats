@@ -1,10 +1,13 @@
-let gridSize = 32
+let gridSize = 64
 let grid
 
 function setup() {
   grid = makeGrid(gridSize, gridSize)
   createCanvas(512, 512)
   drawGrid(grid)
+
+  let cat = new Cat()
+  drawGrid(cat.makePaw())
 }
 
 function makeGrid(x, y) {
@@ -48,12 +51,12 @@ class Cat {
 
   makePaw() {
     // generate variables that describe the paw
-    let length = parseInt(random(5, 14))
-    let thickness = parseInt(random(1, 3))
-    let pawHeight = parseInt(random(1, 2))
+    let length = parseInt(random(6, 24))
+    let thickness = parseInt(random(2, 6))
+    let pawHeight = parseInt(random(1, 4))
 
     // make grid that will contain paw infos
-    let paw = makeGrid(thickness + 1, length)
+    let paw = makeGrid(thickness + 2, length)
 
     // fill the grid with paw
     for (var x = 0; x < paw.length; x++) {
