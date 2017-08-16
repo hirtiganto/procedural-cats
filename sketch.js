@@ -4,7 +4,7 @@ let grid
 function setup() {
   grid = makeGrid(32, 32)
   createCanvas(512, 512)
-  drawGrid()
+  drawGrid(grid)
 }
 
 function makeGrid(x, y) {
@@ -16,17 +16,26 @@ function makeGrid(x, y) {
   return g
 }
 
-function drawGrid() {
+function drawGrid(grid, xoff = 0, yoff = 0) {
+  if (xoff >= 32) {
+    xoff = 32
+  } else if (yoff >= 32) {
+    yoff = 32
+  }
+
   tileSize = floor(width / gridSize)
 
   for (var i = 0; i < grid.length; i++) {
-    for (var j = 0; j < grid.length; j++) {
+    for (var j = 0; j < grid[i].length; j++) {
       if (grid[i][j] === undefined) {
         fill(51)
         stroke(0)
+      } else {
+        noStroke()
+        fill(grid[i][j])
       }
-      x = map(i, 0, 32, 0, 512)
-      y = map(j, 0, 32, 0, 512)
+      x = map(i + xoff, 0, 32, 0, 512)
+      y = map(j + yoff, 0, 32, 0, 512)
       rect(x, y, tileSize, tileSize)
     }
   }
