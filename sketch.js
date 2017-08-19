@@ -6,8 +6,13 @@ function setup() {
   createCanvas(512, 512)
   drawGrid(grid)
 
+  frameRate(4)
+}
+
+function draw() {
+  drawGrid(grid)
   let cat = new Cat()
-  drawGrid(cat.makePaw())
+  drawGrid(cat.makeBody())
 }
 
 function makeGrid(x, y) {
@@ -51,8 +56,8 @@ class Cat {
 
   makePaw() {
     // generate variables that describe the paw
-    let length = parseInt(random(6, 24))
-    let thickness = parseInt(random(2, 6))
+    let length = parseInt(random(6, 20))
+    let thickness = parseInt(random(1, 6))
     let pawHeight = parseInt(random(1, 4))
 
     // make grid that will contain paw infos
@@ -69,5 +74,20 @@ class Cat {
     }
 
     return paw
+  }
+
+  makeBody() {
+    let length = parseInt(random (20, 40))
+    let height = parseInt(random(10, 15))
+
+    let body = makeGrid(length, height)
+
+    for (var x = 0; x < body.length; x++) {
+      for (var y = 0; y < body[x].length; y++) {
+        body[x][y] = color(255)
+      }
+    }
+
+    return body
   }
 }
