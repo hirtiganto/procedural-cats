@@ -12,7 +12,7 @@ function setup() {
 function draw() {
   drawGrid(grid)
   let cat = new Cat()
-  drawGrid(cat.makeBody())
+  drawGrid(cat.makePaw())
 }
 
 function makeGrid(x, y) {
@@ -50,10 +50,6 @@ function drawGrid(grid, xoff = 0, yoff = 0) {
 }
 
 class Cat {
-  constructor() {
-    console.log("Everything is under control")
-  }
-
   makePaw() {
     // generate variables that describe the paw
     let length = parseInt(random(6, 20))
@@ -66,9 +62,25 @@ class Cat {
     // fill the grid with paw
     for (var x = 0; x < paw.length; x++) {
       for (var y = 0; y < paw[x].length; y++) {
+
+        // checking if we're on the part that's ought to be skipped
         if (x === 0 && y < paw[x].length - pawHeight) {
+          if (paw[x].length >= 12) {
+            if (y <= parseInt(paw[x].length / 4)) {
+              paw[x][y] = color(255)
+              continue
+            }
+            continue
+          }
           continue
+        } else if (x === paw.length - 1 && y >= parseInt(paw[x].length / 2)) {
+          continue
+        } else if (thickness > 3) {
+          if (x === paw.length - 2 && y === paw[x].length - 1){
+            continue
+          }
         }
+
         paw[x][y] = color(255)
       }
     }
