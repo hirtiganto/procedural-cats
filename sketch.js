@@ -31,7 +31,7 @@ function drawGrid(grid, xoff = 0, yoff = 0) {
     yoff = gridSize
   }
 
-  tileSize = floor(width / gridSize)
+  let tileSize = floor(width / gridSize)
 
   for (var i = 0; i < grid.length; i++) {
     for (var j = 0; j < grid[i].length; j++) {
@@ -67,6 +67,8 @@ class Cat {
         if (x === 0 && y < paw[x].length - pawHeight) {
           if (paw[x].length >= 12) {
             if (y <= parseInt(paw[x].length / 4)) {
+              // plot twist if we're here we actually fill the cell
+              // it was just easier to make it this way
               paw[x][y] = color(255)
               continue
             }
