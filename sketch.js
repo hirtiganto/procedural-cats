@@ -12,7 +12,7 @@ function setup() {
 function draw() {
   drawGrid(grid)
   let cat = new Cat()
-  drawGrid(cat.makePaw())
+  drawGrid(cat.makeBody())
 }
 
 function makeGrid(x, y) {
@@ -91,13 +91,28 @@ class Cat {
   }
 
   makeBody() {
-    let length = parseInt(random (20, 40))
+    let length = parseInt(random (20, 35))
     let height = parseInt(random(10, 15))
+    let belly = random(0, 1)
 
     let body = makeGrid(length, height)
 
     for (var x = 0; x < body.length; x++) {
       for (var y = 0; y < body[x].length; y++) {
+
+        if (y === 0 && x > body.length / 4 && x < (2 * (body.length / 3))) {
+          continue
+        } else if (y > 2 * body[x].length / 3) {
+          if (x === 0 || x === body.length - 1) {
+            continue
+          }
+          if (belly <= 0.4) {
+            if (y === body[x].length - 1 && x <= body.length / 2) {
+              continue
+            }
+          }
+        }
+
         body[x][y] = color(255)
       }
     }
